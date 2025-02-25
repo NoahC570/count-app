@@ -21,6 +21,9 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.count = 0;
+    this.min = 0;
+    this.max = 99;
+  
 
     this.t = this.t || {};
     this.t = {
@@ -41,6 +44,8 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       count: { type: Number, reflect: true },
+      min: { type: Number},
+      max: { type: Number}
     };
   }
 
@@ -54,8 +59,11 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
       }
-      :host([count = "10" ]) {
+      :host([count = "18" ]) {
         color: var(--ddd-theme-default-athertonViolet);
+      }
+      :host([count = "21" ]) {
+        color: var(--ddd-theme-default-keystoneYellow);
       }
       .wrapper {
         margin: var(--ddd-spacing-2);
@@ -73,18 +81,24 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
       <div class="wrapper">
       <div class="counter">${this.count}</div>
       <div class="buttons">
-        <button @click = "${this.decrese}">-1</button>
-        <button @click = "${this.increase}">+1</button>
+        <button @click = "${this.decrese}" ?disabled="${this.min === this.count}">-1</button>
+        <button @click = "${this.increase}" ?disabled="${this.max === this.count}">+1</button>
     </div>    
     `;
   }
 
   increase() {
-    this.count++;
+    if (this.count < this.max) {
+      this.count++;
+    }
   }
+
   decrese() {
-    this.count--;
+    if (this.count > this.min) {
+      this.count--;
+    } 
   }
+
   reset() {
     this.count = 0;
   }
