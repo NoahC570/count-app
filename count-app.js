@@ -8,12 +8,11 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**npm install @haxtheweb/multiple-choice --save
  * `count-app`
- * 
+ *
  * @demo index.html
  * @element count-app
  */
 export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
-
   static get tag() {
     return "count-app";
   }
@@ -23,7 +22,6 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
     this.count = 0;
     this.min = 0;
     this.max = 99;
-  
 
     this.t = this.t || {};
     this.t = {
@@ -33,8 +31,7 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
     this.registerLocalization({
       context: this,
       localesPath:
-        new URL("./locales/count-app.ar.json", import.meta.url).href +
-        "/../",
+        new URL("./locales/count-app.ar.json", import.meta.url).href + "/../",
       locales: ["ar", "es", "hi", "zh"],
     });
   }
@@ -44,8 +41,8 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       count: { type: Number, reflect: true },
-      min: { type: Number},
-      max: { type: Number}
+      min: { type: Number },
+      max: { type: Number },
     };
   }
 
@@ -53,7 +50,7 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
     if (super.updated) {
       super.updated(changedProperties);
     }
-    if (changedProperties.has('count')) {
+    if (changedProperties.has("count")) {
       if (this.count === 21) {
         this.makeItRain();
       }
@@ -83,34 +80,36 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
 
   // Lit scoped styles
   static get styles() {
-    return [super.styles,
-    css`
-      :host {
-        display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-      }
-      :host([count="18"]) {
-        color: var(--ddd-theme-default-athertonViolet);
-      }
-      :host([count="21"]) {
-        color: var(--ddd-theme-default-keystoneYellow);
-      }
-      :host([count="0"]) {
-        color: var(--ddd-theme-default-original87Pink);
-      }
-      :host([count="99"]) {
-        color: var(--ddd-theme-default-original87Pink);
-      }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      .counter{
-        font-size: var(--count-app-label-font-size, var(--ddd-font-size-xxl));
-      }
-    `];
+    return [
+      super.styles,
+      css`
+        :host {
+          display: block;
+          color: var(--ddd-theme-primary);
+          background-color: var(--ddd-theme-accent);
+          font-family: var(--ddd-font-navigation);
+        }
+        :host([count="18"]) {
+          color: var(--ddd-theme-default-athertonViolet);
+        }
+        :host([count="21"]) {
+          color: var(--ddd-theme-default-keystoneYellow);
+        }
+        :host([count="0"]) {
+          color: var(--ddd-theme-default-original87Pink);
+        }
+        :host([count="99"]) {
+          color: var(--ddd-theme-default-original87Pink);
+        }
+        .wrapper {
+          margin: var(--ddd-spacing-2);
+          padding: var(--ddd-spacing-4);
+        }
+        .counter {
+          font-size: var(--count-app-label-font-size, var(--ddd-font-size-xxl));
+        }
+      `,
+    ];
   }
 
   // Lit render the HTML
@@ -121,10 +120,20 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
           <div class="counter">${this.count}</div>
         </confetti-container>
         <div class="buttons">
-          <button @click = "${this.decrease}" ?disabled="${this.min === this.count}">-1</button>
-          <button @clock = 
-          <button @click = "${this.increase}" ?disabled="${this.max === this.count}">+1</button>
-        </div>    
+          <button
+            @click="${this.decrease}"
+            ?disabled="${this.min === this.count}"
+          >
+            -1
+          </button>
+          <button
+            @clock="<button"
+            @click="${this.increase}"
+            ?disabled="${this.max === this.count}"
+          >
+            +1
+          </button>
+        </div>
       </div>
     `;
   }
@@ -138,7 +147,7 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
   decrease() {
     if (this.count > this.min) {
       this.count--;
-    } 
+    }
   }
 
   reset() {
