@@ -6,7 +6,7 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
-/**
+/**npm install @haxtheweb/multiple-choice --save
  * `count-app`
  * 
  * @demo index.html
@@ -111,8 +111,9 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <confetti-container id="confetti"></confetti-container>
-        <div class="counter">${this.count}</div>
+        <confetti-container id="confetti">
+          <div class="counter">${this.count}</div>
+        </confetti-container>
         <div class="buttons">
           <button @click = "${this.decrease}" ?disabled="${this.min === this.count}">-1</button>
           <button @click = "${this.increase}" ?disabled="${this.max === this.count}">+1</button>
