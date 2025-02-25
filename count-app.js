@@ -97,6 +97,12 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
       :host([count="21"]) {
         color: var(--ddd-theme-default-keystoneYellow);
       }
+      :host([count="0"]) {
+        color: var(--ddd-theme-default-original87Pink);
+      }
+      :host([count="99"]) {
+        color: var(--ddd-theme-default-original87Pink);
+      }
       .wrapper {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
