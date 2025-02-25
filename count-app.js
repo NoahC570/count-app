@@ -122,6 +122,7 @@ export class CountApp extends DDDSuper(I18NMixin(LitElement)) {
         </confetti-container>
         <div class="buttons">
           <button @click = "${this.decrease}" ?disabled="${this.min === this.count}">-1</button>
+          <button @clock = 
           <button @click = "${this.increase}" ?disabled="${this.max === this.count}">+1</button>
         </div>    
       </div>
